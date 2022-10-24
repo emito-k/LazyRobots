@@ -1,0 +1,9 @@
+show countries
+select country [country_index]
+select army [index]
+create node [name] [city_name]
+create edge [node_index] [node_index] [weight] [name]
+create city [name] [health] [is_capital{t,f}]
+select city [city_index]
+start fight
+
