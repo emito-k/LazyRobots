@@ -6,6 +6,9 @@ class ArmyUnit;
 
 class MilitaryFactory {
 public:
+    /** Create an ArmyUnit object
+     * @return an ArmyUnit object
+     */
     virtual ArmyUnit* createUnit() const = 0;
     virtual ~MilitaryFactory(){};
 };

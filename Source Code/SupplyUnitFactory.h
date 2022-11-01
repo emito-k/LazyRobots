@@ -5,6 +5,9 @@
 
 class SupplyUnitFactory : public MilitaryFactory{
 public:
+    /** Create SupplyUnit object
+     * @return SupplyUnit object
+     */
     ArmyUnit * createUnit() const override;
 };
 

@@ -5,8 +5,10 @@
 
 class TankUnitFactory : public MilitaryFactory{
 public:
+    /** Create TankUnit object
+     * @return TankUnit object
+     */
     ArmyUnit * createUnit() const override;
 };
-
 
 #endif

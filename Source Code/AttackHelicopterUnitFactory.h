@@ -5,6 +5,9 @@
 
 class AttackHelicopterUnitFactory : public MilitaryFactory{
 public:
+    /** Create AttackHelicopterUnit object
+     * @return AttackHelicopterUnit object
+     */
     ArmyUnit * createUnit() const override;
 };
 
