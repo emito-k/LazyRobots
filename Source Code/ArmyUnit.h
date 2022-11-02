@@ -32,8 +32,6 @@ public:
     void getDamaged(double damageInflicted);
     /// @returns currentNode's location
     std::string getCurrentLocationName();
-    void setCountry(Country* country);
-    void setCurrentNode(Node* node);
 private:
     double _healthPoints;
     double _damagePoints;
