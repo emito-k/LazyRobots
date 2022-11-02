@@ -9,10 +9,26 @@ class Country;
 
 class ArmyUnit {
 public:
-    ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType);
+    /** @param HP is the healthPoints for the ArmyUnit
+    * @param damagePoints is the damage the armyUnit inflicts
+    * @param travelSpeed is the number of nodes the unit can move per turn
+    * @param range is how many nodes away the unit can attack
+     * @param unitType is the type of unit
+    */
+    ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType, std::string nodeName, std::string countryName);
+    /// @returns the unitType
     std::string getUnitType();
+    /** The current army attack the passed in armyUnit, lowering their health points
+     * @param enemyUnit is the armyUnit that the current army attack
+     */
     void attackUnit(ArmyUnit* enemyUnit);
+    /**Is one army giving some of its health to the passed in army
+     * @param friendlyUnit is the army that the current army gives its health to
+     */
     void supplyUnit(ArmyUnit* friendlyUnit);
+    /** Decreases the army's health by the passed in damage amount
+     * @param damageInflicted is the damage inflicted by the enemy
+     */
     void getDamaged(double damageInflicted);
 private:
     double _healthPoints;
