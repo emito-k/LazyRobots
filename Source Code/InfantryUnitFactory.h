@@ -8,7 +8,7 @@ public:
     /** Create InfantryUnit object
      * @return InfantryUnit object
      */
-    ArmyUnit * createUnit() const override;
+    ArmyUnit * createUnit(std::string nodeName, std::string countryName) const override;
 };
 
 

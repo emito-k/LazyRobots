@@ -1,5 +1,5 @@
 #include "AttackHelicopterUnitFactory.h"
 
-ArmyUnit *AttackHelicopterUnitFactory::createUnit() const {
-    return new AttackHelicopterUnit();
+ArmyUnit *AttackHelicopterUnitFactory::createUnit(std::string nodeName, std::string countryName) const {
+    return new AttackHelicopterUnit(nodeName, countryName);
 }

@@ -4,7 +4,7 @@
 
 class TankUnit : public ArmyUnit {
 public:
-    TankUnit();
+    TankUnit(std::string nodeName, std::string countryName);
 };
 
 

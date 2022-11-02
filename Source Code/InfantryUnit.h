@@ -4,7 +4,7 @@
 
 class InfantryUnit : public ArmyUnit{
 public:
-    InfantryUnit();
+    InfantryUnit(std::string nodeName, std::string countryName);
 };
 
 

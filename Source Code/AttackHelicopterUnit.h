@@ -4,7 +4,8 @@
 
 class AttackHelicopterUnit : public ArmyUnit{
 public:
-    AttackHelicopterUnit();
+
+    AttackHelicopterUnit(std::string nodeName, std::string countryName);
 };
 
 

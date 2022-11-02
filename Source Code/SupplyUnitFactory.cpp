@@ -1,5 +1,5 @@
 #include "SupplyUnitFactory.h"
 
-ArmyUnit *SupplyUnitFactory::createUnit() const {
-    return new SupplyUnit();
+ArmyUnit *SupplyUnitFactory::createUnit(std::string nodeName, std::string countryName) const {
+    return new SupplyUnit(nodeName, countryName);
 }
