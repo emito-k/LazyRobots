@@ -30,6 +30,8 @@ public:
      * @param damageInflicted is the damage inflicted by the enemy
      */
     void getDamaged(double damageInflicted);
+    /// @returns currentNode's location
+    std::string getCurrentLocationName();
 private:
     double _healthPoints;
     double _damagePoints;

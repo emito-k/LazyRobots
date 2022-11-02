@@ -36,3 +36,7 @@ void ArmyUnit::supplyUnit(ArmyUnit *friendlyUnit) {
         _healthPoints = _healthPoints - (_healthPoints*0.3);
     }
 }
+
+std::string ArmyUnit::getCurrentLocationName() {
+    return currentNode->getNodeName();
+}
