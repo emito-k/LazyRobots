@@ -1,5 +1,5 @@
 #include "TankUnit.h"
 
-TankUnit::TankUnit(std::string nodeName, std::string countryName) : ArmyUnit(100, 50, 1, 1, "Tank", nodeName, countryName) {
+TankUnit::TankUnit(Country* country, Node* node) : ArmyUnit(100, 50, 1, 1, "Tank", country, node) {
 
 }

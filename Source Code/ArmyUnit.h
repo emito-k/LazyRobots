@@ -15,7 +15,7 @@ public:
     * @param range is how many nodes away the unit can attack
      * @param unitType is the type of unit
     */
-    ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType, std::string nodeName, std::string countryName);
+    ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType, Country* country, Node* node);
     /// @returns the unitType
     std::string getUnitType();
     /** The current army attack the passed in armyUnit, lowering their health points
@@ -32,13 +32,15 @@ public:
     void getDamaged(double damageInflicted);
     /// @returns currentNode's location
     std::string getCurrentLocationName();
+    void setCountry(Country* country);
+    void setCurrentNode(Node* node);
 private:
     double _healthPoints;
     double _damagePoints;
     int _travelSpeed;
     int _range;
     std::string _unitType;
-    Country* country;
+    Country* _country;
     Node* currentNode;
 };
 

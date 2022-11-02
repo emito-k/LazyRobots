@@ -1,13 +1,13 @@
 #include "ArmyUnit.h"
 
-ArmyUnit::ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType, std::string nodeName, std::string countryName) {
+ArmyUnit::ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType, Country* country, Node* node) {
     _healthPoints = HP;
     _damagePoints = damagePoints;
     _travelSpeed = travelSpeed;
     _range = range;
     _unitType = unitType;
-    country = new Country(countryName);
-    currentNode = new Node(nodeName);
+    _country = country;
+    currentNode = node;
 
 }
 
@@ -16,7 +16,7 @@ std::string ArmyUnit::getUnitType() {
 }
 
 void ArmyUnit::attackUnit(ArmyUnit *enemyUnit) {
-    if(country == enemyUnit->country)
+    if(_country == enemyUnit->_country)
         std::cout << "Friendly fire not tolerated" << std::endl;
     else
         enemyUnit->getDamaged(_damagePoints);
@@ -27,11 +27,11 @@ void ArmyUnit::getDamaged(double damageInflicted) {
         _healthPoints = 0;
     else
         _healthPoints -= damageInflicted;
-    std::cout << country->getCountryName() << "'s " << _unitType << " unit has been dealt " << damageInflicted << std::endl;
+    std::cout << _country->getCountryName() << "'s " << _unitType << " unit has been dealt " << damageInflicted << std::endl;
 }
 
 void ArmyUnit::supplyUnit(ArmyUnit *friendlyUnit) {
-    if(country == friendlyUnit->country){
+    if(_country == friendlyUnit->_country){
         friendlyUnit->_healthPoints = _healthPoints * 0.3;
         _healthPoints = _healthPoints - (_healthPoints*0.3);
     }
