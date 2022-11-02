@@ -27,7 +27,7 @@ void ArmyUnit::getDamaged(double damageInflicted) {
         _healthPoints = 0;
     else
         _healthPoints -= damageInflicted;
-    std::cout << country->getCountryName() << "'s " << _unitType << "has been dealt " << damageInflicted << std::endl;
+    std::cout << country->getCountryName() << "'s " << _unitType << " unit has been dealt " << damageInflicted << std::endl;
 }
 
 void ArmyUnit::supplyUnit(ArmyUnit *friendlyUnit) {
