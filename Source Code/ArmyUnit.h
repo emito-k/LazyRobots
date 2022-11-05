@@ -3,6 +3,8 @@
 #include "Node.h"
 #include "Country.h"
 #include <string>
+#include <vector>
+#include <algorithm>
 
 class Node;
 class Country;
@@ -15,7 +17,7 @@ public:
     * @param range is how many nodes away the unit can attack
      * @param unitType is the type of unit
     */
-    ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType, Country* country, Node* node);
+    ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType, Country* country);
     /// @returns the unitType
     std::string getUnitType();
     /** The current army attack the passed in armyUnit, lowering their health points
@@ -32,6 +34,17 @@ public:
     void getDamaged(double damageInflicted);
     /// @returns currentNode's location
     std::string getCurrentLocationName();
+    /// !prints all the targets the army can attack
+    void printTargets();
+    /// !Sets the currentNode member
+    void setNode(Node* node);
+    /// @returns target
+    ArmyUnit* getTarget(int index);
+    bool isAlly(Country* country);
+    /** Helper function, removes duplicates from the node vector
+ * @param v is a vector containing nodes
+ */
+    void removeDuplicates(std::vector<Node*> &v);
 private:
     double _healthPoints;
     double _damagePoints;
@@ -40,6 +53,7 @@ private:
     std::string _unitType;
     Country* _country;
     Node* currentNode;
+    std::vector<ArmyUnit*> targets;
 };
 
 
