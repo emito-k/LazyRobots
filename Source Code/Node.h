@@ -57,7 +57,7 @@ public:
      * @param nodes is a vector containing the nodes that are a certain distance away from the starting node
      * @returns a vector containing the nodes
      */
-    std::vector<Node*> getDistanceAt(int distance, std::vector<Node*> nodes);
+    std::vector<Node*> getNodesAtDistance(int distance, std::vector<Node*> nodes);
     /// @returns occupants
     std::vector<ArmyUnit*> getOccupants();
     /// @returns neighbours

@@ -45,9 +45,9 @@ void ArmyUnit::printTargets() {
     if(currentNode != nullptr) {
         std::vector<Node *> nodes;
         if (_range == 1) {
-            nodes = currentNode->getDistanceAt(1, nodes);
+            nodes = currentNode->getNodesAtDistance(1, nodes);
         } else {
-            nodes = currentNode->getDistanceAt(2, nodes);
+            nodes = currentNode->getNodesAtDistance(2, nodes);
         }
         removeDuplicates(nodes);
         auto iter = nodes.begin();

@@ -70,7 +70,7 @@ void Node::removeNode(Node* node){
     }
 }
 
-std::vector<Node*> Node::getDistanceAt(int distance, std::vector<Node*> nodes) {
+std::vector<Node*> Node::getNodesAtDistance(int distance, std::vector<Node*> nodes) {
     if(distance == 1){
         std::vector<Node*> temp = addNeighbours(nodes);
         auto iter = temp.begin();
@@ -92,7 +92,7 @@ std::vector<Node*> Node::getDistanceAt(int distance, std::vector<Node*> nodes) {
         for(iter; iter != neighbours.end(); iter++){
             if(*iter != NULL) {
                 std::vector<Node*> t;
-                std::vector<Node*> temp2 = (*iter)->getDistanceAt(1, t);
+                std::vector<Node*> temp2 = (*iter)->getNodesAtDistance(1, t);
                 auto iter3 = temp2.begin();
                 for(iter3; iter3 != temp2.end(); iter3++){
                     if(*iter3 != NULL) {
