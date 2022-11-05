@@ -5,7 +5,7 @@
 class AttackHelicopterUnit : public ArmyUnit{
 public:
 
-    AttackHelicopterUnit(Country* country, Node* node);
+    AttackHelicopterUnit(Country* country);
 };
 
 

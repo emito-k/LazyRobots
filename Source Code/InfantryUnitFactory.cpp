@@ -1,5 +1,5 @@
 #include "InfantryUnitFactory.h"
 
-ArmyUnit *InfantryUnitFactory::createUnit(Country* country, Node* node) const {
-    return new InfantryUnit(country, node);
+ArmyUnit *InfantryUnitFactory::createUnit(Country* country) const {
+    return new InfantryUnit(country);
 }

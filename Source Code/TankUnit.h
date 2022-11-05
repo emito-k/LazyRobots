@@ -4,7 +4,7 @@
 
 class TankUnit : public ArmyUnit {
 public:
-    TankUnit(Country* country, Node* node);
+    TankUnit(Country* country);
 };
 
 

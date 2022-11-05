@@ -8,7 +8,7 @@ public:
     /** Create SupplyUnit object
      * @return SupplyUnit object
      */
-    ArmyUnit * createUnit(Country* country, Node* node) const override;
+    ArmyUnit * createUnit(Country* country) const override;
 };
 
 #endif

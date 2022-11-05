@@ -12,7 +12,7 @@ public:
     /** Create an ArmyUnit object
      * @return an ArmyUnit object
      */
-    virtual ArmyUnit* createUnit(Country* country, Node* node) const = 0;
+    virtual ArmyUnit* createUnit(Country* country) const = 0;
     virtual ~MilitaryFactory(){};
 };
 

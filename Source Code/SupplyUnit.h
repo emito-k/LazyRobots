@@ -4,7 +4,7 @@
 
 class SupplyUnit : public ArmyUnit{
 public:
-    SupplyUnit(Country* country, Node* node);
+    SupplyUnit(Country* country);
 };
 
 #endif
