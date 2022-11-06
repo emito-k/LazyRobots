@@ -1,19 +1,39 @@
 #include "WarEngine.h"
-#include "Terrain"
+#include "Terrain.h"
 
 WarEngine::WarEngine() {
     graph = new Graph();
 }
 
 WarEngine::warStart() {
+    createMap();
+    createPlayers();
 
+    int turn = -1;
+    int index;
+    Player* currentPlayer = NULL;
+
+    do {
+        turn++;
+        index = turn%players.size();
+        currentPlayer = players.at(index)->performTurn();
+    }
+    while(currentPlayer()->getCountry()->isActive());
+
+    std::cout << "The war lasted " << (turn + 1) << " turns. The country that raised the white flag is: ";
+    std::cout << currentPlayer()->getCountry()->getCountryName();
+    std::cout << "Game Over! Thank you for playing...\n\n";
+}
+
+void WarEngine::createPlayers() {
+    // create player objects 
 }
 
 void WarEngine::createMap() {
     if(graph == NULL) {
         return;
     }
-
+    
     const int NODES_ARRAY_SIZE = 12;
     Node** nodes = new Node*[NODES_ARRAY_SIZE];
     std::string val = "0";
@@ -33,6 +53,9 @@ void WarEngine::createMap() {
     node[7]->connectNode(node[9])->connectNode(node[8]);
     node[8]->connectNode(node[6]);
     node[9]->connectNode(node[6]);
+
+    node[0]->setFactories(); // factory established
+    node[6]->setFactories(); // factory established
 
     delete [] nodes;
 }

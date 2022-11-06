@@ -12,7 +12,7 @@ class Player {
         std::string getPlayerType();
         std::string getPlayerName();
         Country* getCountry();
-
+        PlayerCommand* getCommand(int index);
     private:
         Country* country;
         std::string playerName;
