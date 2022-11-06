@@ -28,10 +28,12 @@ Node *Node::disconnectNode(Node *newNode) {
 
 void Node::addArmy(ArmyUnit *armyUnit) {
     occupants.push_back(armyUnit);
+    _terrain->addEffects(armyUnit);
     armyUnit->setNode(this);
 }
 
 void Node::removeArmy(ArmyUnit *armyUnit) {
+    _terrain->removeEffects(armyUnit);
     auto iter = occupants.begin();
     for(iter; iter != occupants.end(); iter++){
         if(*iter == armyUnit) {
