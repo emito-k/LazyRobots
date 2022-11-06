@@ -37,7 +37,7 @@ void Country::setCapitol(Node* node) {
     capital = node;
 }
 
-void Country::getCountryName() {
+std::string Country::getCountryName() {
     return countryName;
 }
 

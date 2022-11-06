@@ -7,12 +7,16 @@
 
 class Player {
     public:
-        Player(std::string playerName);
+        Player(std::string playerName, std::string playerType);
         virtual void performTurn() = 0;
+        std::string getPlayerType();
+        std::string getPlayerName();
+        Country* getCountry();
 
     private:
         Country* country;
         std::string playerName;
+        std::string playerType;
         std::vector<PlayerCommand*> playerCommands;
 };
 

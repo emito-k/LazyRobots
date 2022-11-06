@@ -8,9 +8,8 @@
 
 class WarEngine {
     public:
-        WarEngine(int numberOfPlayers);
+        WarEngine();
         void warStart();
-        void createNodes();
         void createMap();
         void createPlayers();
 

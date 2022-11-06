@@ -1,9 +1,32 @@
+#include "Terrain.h"
+#include "ForestTerrain.h"
+#include "SwampTerrain.h"
+#include "PlainTerrain.h"
+#include "MountainTerrain.h"
 #include "Graph.h"
 
-Graph::Graph() = default;
+Graph::Graph() {
+    _terrains.push_back(new MountainTerrain());
+    _terrains.push_back(new PlainTerrain());
+    _terrains.push_back(new ForestTerrain());
+    _terrains.push_back(new SwampTerrain());
+}
+
+Graph::~Graph() {
+    // deallocate memory for terrain objects
+    for(int index = 0; index < _terrains.size(); index++) {
+        delete _terrains.at(index);
+    }
+
+    // deallocate memory for node objects
+    for(int index = 0; index < _nodes.size(); index++) {
+        delete _nodes.at(index);
+    }
+}
 
 Node *Graph::createNode(std::string nodeName) {
     Node* newNode = new Node(nodeName);
+    newNode->setTerrain(_terrains[1]);
     _nodes.push_back(newNode);
     return newNode;
 }
