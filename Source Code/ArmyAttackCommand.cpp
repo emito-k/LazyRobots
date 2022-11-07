@@ -5,32 +5,34 @@ ArmyAttackCommand::ArmyAttackCommand() : PlayerCommand("Attack Command") {
 }
 
 void ArmyAttackCommand::executeCommand(Country *country) {
-    if(country == NULL) {
+    if(country == nullptr) {
         return;
     }
 
-    std::cout << "Select the army you'd like to carry out the attack:\n";
-    country->printArmies();
+    bool flag = country->printArmies();
 
-    int index = -1;
+    if(flag){
+        std::cout << "Select the army you'd like to carry out the attack:\n";
+        int index = -1;
 
-    std::cin >> index;
+        std::cin >> index;
 
-    ArmyUnit* armyUnit = country->getArmy(index);
+        ArmyUnit* armyUnit = country->getArmy(index);
 
-    if(armyUnit == NULL) {
-        return;
+        if(armyUnit == nullptr) {
+            return;
+        }
+
+        flag = armyUnit->printTargets();
+
+        if(flag) {
+            std::cin >> index;
+
+            ArmyUnit *enemyUnit = armyUnit->getTarget(index);
+
+            if(enemyUnit != nullptr) {
+                armyUnit->attackUnit(enemyUnit);
+            }
+        }
     }
-    
-    armyUnit->printTargets();
-
-    std::cin >> index;
-
-    ArmyUnit *enemyUnit = armyUnit->getTarget(index);
-
-    if(enemyUnit != NULL) {
-        armyUnit->attackUnit(enemyUnit);
-    }
-    
-    // std::cout << "Select the army you'd like to carry out the attack:\n";
 }

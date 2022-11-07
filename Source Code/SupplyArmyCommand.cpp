@@ -1,5 +1,6 @@
 #include "SupplyArmyCommand.h"
 
+
 SupplyArmyCommand::SupplyArmyCommand() : PlayerCommand("Supply Command") {
 }
 
@@ -7,23 +8,25 @@ void SupplyArmyCommand::executeCommand(Country* country) {
     if(country == NULL) {
         return;
     }
-    
-    std::cout << "Select the army you'd like to carry out the supply command:\n";
-    country->printArmies();
 
-    int index = -1;
+    bool flag = country->printArmies();
 
-    std::cin >> index;
+    if(flag){
+        std::cout << "Select the army you'd like to carry out the supply command:\n";
+        int index = -1;
 
-    ArmyUnit* armyUnit = country->getArmy(index);
+        std::cin >> index;
 
-    if(armyUnit == NULL) {
-        return;
+        ArmyUnit* armyUnit = country->getArmy(index);
+
+        if(armyUnit == NULL) {
+            return;
+        }
+
+        Node* node = armyUnit->getCurrentNode();
     }
-    
-    Node* node = armyUnit->getCurrentNode();
 
-    
+
 
     // std::cin >> index;
 
@@ -32,6 +35,5 @@ void SupplyArmyCommand::executeCommand(Country* country) {
     // if(enemyUnit != NULL) {
     //     armyUnit->attackUnit(enemyUnit);
     // }
-    
-}
 
+}

@@ -7,15 +7,15 @@
 #include "Player.h"
 
 class WarEngine {
-    public:
-        WarEngine();
-        void warStart();
-        void createMap();
-        void createPlayers();
+public:
+    WarEngine();
+    void warStart();
+    void createMap();
+    void createPlayers();
 
-    private:
-        Graph *graph;
-        std::vector<Player*> players;
+private:
+    Graph *graph;
+    std::vector<Player*> players;
 };
 
 #endif

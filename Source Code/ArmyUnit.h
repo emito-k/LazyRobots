@@ -36,7 +36,7 @@ public:
     /// @returns currentNode's location
     std::string getCurrentLocationName();
     /// !prints all the targets the army can attack
-    void printTargets();
+    bool printTargets();
     /// !Sets the currentNode member
     void setNode(Node* node);
     /// @returns target

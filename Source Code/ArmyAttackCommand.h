@@ -4,9 +4,9 @@
 #include "PlayerCommand.h"
 
 class ArmyAttackCommand : public PlayerCommand {
-    public:
-        ArmyAttackCommand();
-        void executeCommand(Country *country) override;
+public:
+    ArmyAttackCommand();
+    void executeCommand(Country *country) override;
 };
 
 #endif

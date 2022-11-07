@@ -2,8 +2,6 @@
 
 ComputerPlayer::ComputerPlayer(std::string playerName) : Player(playerName, "Computer") {}
 
-void ComputerPlayer::performAction() {
+void ComputerPlayer::performTurn() {
     // randomly picking options
 }
-
-

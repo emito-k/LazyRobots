@@ -10,8 +10,6 @@ public:
      * @param nodeName is used to create the new Node
      * @returns the new node created
      */
-    ~Graph();
-    
     Node* createNode(std::string nodeName);
     /// ! Print out the list of nodes along with their indices
     void printNodes();

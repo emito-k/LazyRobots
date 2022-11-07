@@ -4,9 +4,9 @@
 #include "Player.h"
 
 class HumanPlayer : public Player {
-    public:
-        HumanPlayer(std::string playerName);
-        void performAction() override;
+public:
+    HumanPlayer(std::string playerName);
+    void performTurn() override;
 };
 
 #endif

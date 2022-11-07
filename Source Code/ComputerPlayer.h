@@ -4,9 +4,9 @@
 #include "Player.h"
 
 class ComputerPlayer : public Player {
-    public:
-        ComputerPlayer(std::string playerName = "Bobert");
-        void performAction() override;
+public:
+    ComputerPlayer(std::string playerName = "Bobert");
+    void performTurn() override;
 };
 
 #endif

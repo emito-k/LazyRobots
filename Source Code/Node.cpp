@@ -40,6 +40,8 @@ Node *Node::disconnectNode(Node *newNode) {
 }
 
 void Node::addArmy(ArmyUnit *armyUnit) {
+    if(armyUnit->getCurrentNode() != nullptr)
+        armyUnit->getCurrentNode()->removeArmy(armyUnit);
     occupants.push_back(armyUnit);
     armyUnit->setNode(this);
 }

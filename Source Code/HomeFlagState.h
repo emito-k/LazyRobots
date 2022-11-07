@@ -4,9 +4,9 @@
 #include "FlagState.h"
 
 class HomeFlagState : public FlagState {
-    public:
-        // @returns true to indicate the will to continue fighting
-        bool isActive() override;
+public:
+    // @returns true to indicate the will to continue fighting
+    bool isActive() override;
 };
 
 #endif

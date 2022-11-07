@@ -1,4 +1,5 @@
 #include "ArmyUnit.h"
+#include <unistd.h>
 
 ArmyUnit::ArmyUnit(double HP, double damagePoints, int travelSpeed, int range, std::string unitType, Country* country) {
     _healthPoints = HP;
@@ -41,23 +42,20 @@ std::string ArmyUnit::getCurrentLocationName() {
     return "";
 }
 
-void ArmyUnit::printTargets() {
+bool ArmyUnit::printTargets() {
+    targets = {};
     if(currentNode != nullptr) {
         std::vector<Node *> nodes;
-        if (_range == 1) {
+        if(_range == 0){
+            nodes.push_back(currentNode);
+        }
+        else if (_range == 1) {
             nodes = currentNode->getNodesAtDistance(1, nodes);
-        } else {
+        }
+        else {
             nodes = currentNode->getNodesAtDistance(2, nodes);
         }
         removeDuplicates(nodes);
-        auto iter = nodes.begin();
-        //Remove the current node from the list of targets
-        for (iter; iter != nodes.end(); iter++) {
-            if (*iter == currentNode) {
-                iter = nodes.erase(iter);
-                break;
-            }
-        }
         //Get the ArmyUnits occupying the nodes in range
         auto iter2 = nodes.begin();
         for(iter2; iter2 != nodes.end(); iter2++){
@@ -65,7 +63,7 @@ void ArmyUnit::printTargets() {
                 std::vector<ArmyUnit*> occupants = (*iter2)->getOccupants();
                 auto iter3 = occupants.begin();
                 for(iter3; iter3 != occupants.end(); iter3++){
-                    if(*iter3 != NULL && !(*iter3)->isAlly(_country)){
+                    if(*iter3 != NULL && !(*iter3)->isAlly(_country) && (*iter3) != this){
                         targets.push_back(*iter3);
                     }
                 }
@@ -73,16 +71,27 @@ void ArmyUnit::printTargets() {
         }
 
         //Print the targets
-        int index = 0;
-        std::cout << std::left << std::setw(25) << "Target" << std::left << std::setw(5) << "Index" << std::endl;
-        auto iter4 = targets.begin();
-        for(iter4; iter4 != targets.end(); iter4++){
-            if(*iter4 != NULL) {
-                std::cout << std::left << std::setw(25) << (*iter4)->getUnitType()
-                          << std::left << std::setw(5) << index++ << std::endl;
+        if(targets.empty()) {
+            system("clear");
+            std::cout << "No targets " << std::endl;
+            sleep(2);
+            system("clear");
+            return false;
+        }
+        else{
+            int index = 0;
+            std::cout << "Select the army you'd like to attack: " << std::endl;
+            std::cout << "Target indices" << std::endl;
+            auto iter4 = targets.begin();
+            for(iter4; iter4 != targets.end(); iter4++){
+                if(*iter4 != NULL && *iter4 != this) {
+                    std::cout << index++ << ". " << (*iter4)->getUnitType() << std::endl;
+                }
             }
+            std::cout << ">";
         }
     }
+    return true;
 }
 
 ArmyUnit *ArmyUnit::getTarget(int index) {
@@ -100,14 +109,6 @@ bool ArmyUnit::isAlly(Country *country) {
 void ArmyUnit::setNode(Node *node) {
     currentNode = node;
 }
-//Helper function
-void ArmyUnit::removeDuplicates(std::vector<Node *> &v) {
-    auto end = v.end();
-    for (auto it = v.begin(); it != end; ++it) {
-        end = std::remove(it + 1, end, *it);
-    }
-    v.erase(end, v.end());
-}
 
 Node *ArmyUnit::getCurrentNode() {
     return currentNode;
@@ -118,7 +119,27 @@ Country *ArmyUnit::getCountry() {
 }
 
 std::vector<Node *> ArmyUnit::moveOptions() {
-    return std::vector<Node *>();
+    std::vector<Node *> nodes;
+
+    if(currentNode != nullptr) {
+       if (_travelSpeed == 1) {
+            nodes = currentNode->getNodesAtDistance(1, nodes);
+        }
+       else {
+            nodes = currentNode->getNodesAtDistance(2, nodes);
+        }
+        removeDuplicates(nodes);
+        auto iter = nodes.begin();
+        //Remove the current node from the list of Locations
+        for (iter; iter != nodes.end(); iter++) {
+            if (*iter == currentNode) {
+                iter = nodes.erase(iter);
+                break;
+            }
+        }
+    }
+
+    return nodes;
 }
 
 void ArmyUnit::setDamage(double damage) {
@@ -135,4 +156,12 @@ void ArmyUnit::setRange(int range) {
 
 int ArmyUnit::getRange() const {
     return _range;
+}
+//Helper function
+void ArmyUnit::removeDuplicates(std::vector<Node *> &v) {
+    auto end = v.end();
+    for (auto it = v.begin(); it != end; ++it) {
+        end = std::remove(it + 1, end, *it);
+    }
+    v.erase(end, v.end());
 }

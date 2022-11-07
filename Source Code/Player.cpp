@@ -1,4 +1,10 @@
 #include "Player.h"
+#include "ArmyAttackCommand.h"
+#include "MoveArmyCommand.h"
+#include "SupplyArmyCommand.h"
+#include "CreateArmyCommand.h"
+#include "SurrenderCommand.h"
+#include <string>
 
 Player::Player(std::string playerName, std::string playerType) {
     this->playerName = playerName;
@@ -8,9 +14,13 @@ Player::Player(std::string playerName, std::string playerType) {
     playerCommands.push_back(new SupplyArmyCommand());
     playerCommands.push_back(new CreateArmyCommand());
     playerCommands.push_back(new SurrenderCommand());
+    std::string countryName;
+    std::cout << playerName << " Enter country name: ";
+    std::getline(std::cin, countryName);
+    country = new Country(countryName);
 }
 
-PlayerCommand* PlayerCommand::getCommand(int index) {
+PlayerCommand* Player::getCommand(int index) {
     if(index < 0 || index >= playerCommands.size()) {
         return NULL;
     }

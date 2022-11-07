@@ -3,7 +3,7 @@
 
 HumanPlayer::HumanPlayer(std::string playerName) : Player(playerName, "Human") {}
 
-void HumanPlayer::performAction() {
+void HumanPlayer::performTurn() {
     bool chosen_options[6] = {0};
 
     int user_input;
@@ -18,7 +18,7 @@ void HumanPlayer::performAction() {
         if(!chosen_options[5]) std::cout << "5. Surrender\n";
 
         std::cout << "> ";
-        
+
         std::cin >> user_input;
 
         if(user_input < 0 || user_input > 5 || chosen_options[user_input]) {
@@ -26,9 +26,10 @@ void HumanPlayer::performAction() {
         }
 
         chosen_options[user_input] = true;
+        system("clear");
 
         if(!chosen_options[0]) {
-            Player::getCountry()->executeCommand(Player::getCommand(user_input));
+            Player::getCommand(user_input-1)->executeCommand(Player::getCountry());
         }
     }
 }
