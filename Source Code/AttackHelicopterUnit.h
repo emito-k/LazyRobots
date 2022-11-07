@@ -4,7 +4,9 @@
 
 class AttackHelicopterUnit : public ArmyUnit{
 public:
-
+    /**
+    * Sets #_country variable to be @param country and sets the type to be AttackHelicopter
+    */
     AttackHelicopterUnit(Country* country);
 };
 
