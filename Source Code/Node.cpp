@@ -1,12 +1,25 @@
 #include "Node.h"
+#include "InfantryUnitFactory.h"
+#include "TankUnitFactory.h"
+#include "AttackHelicopterUnitFactory.h"
+#include "SupplyUnitFactory.h"
 
 Node::Node(std::string nodeName) {
     _nodeName = nodeName;
 }
 
-Node *Node::setFactory(MilitaryFactory *factory) {
-    _factory = factory;
+Node *Node::setFactories() {
+    _factories.push_back(new InfantryUnitFactory());
+    _factories.push_back(new TankUnitFactory());
+    _factories.push_back(new AttackHelicopterUnitFactory());
+    _factories.push_back(new SupplyUnitFactory());
     return this;
+}
+
+MilitaryFactory *Node::getFactory(int index) {
+    if(index >= _factories.size())
+        return nullptr;
+    return _factories.at(index);
 }
 
 Node *Node::setTerrain(Terrain *terrain) {
@@ -28,12 +41,10 @@ Node *Node::disconnectNode(Node *newNode) {
 
 void Node::addArmy(ArmyUnit *armyUnit) {
     occupants.push_back(armyUnit);
-    _terrain->addEffects(armyUnit);
     armyUnit->setNode(this);
 }
 
 void Node::removeArmy(ArmyUnit *armyUnit) {
-    _terrain->removeEffects(armyUnit);
     auto iter = occupants.begin();
     for(iter; iter != occupants.end(); iter++){
         if(*iter == armyUnit) {
@@ -49,7 +60,7 @@ std::string Node::getNodeName() {
 }
 
 void Node::printNodes() {
-    std::cout << "List of neighbours" << std::endl;
+    std::cout << "List of neighbours for " << getNodeName() << std::endl;
     auto iter = neighbours.begin();
     for(iter; iter != neighbours.end(); iter++){
         if(*iter != NULL) {

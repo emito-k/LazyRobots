@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
 
 class Node;
 class Country;
@@ -45,6 +46,13 @@ public:
  * @param v is a vector containing nodes
  */
     void removeDuplicates(std::vector<Node*> &v);
+    Node* getCurrentNode();
+    Country* getCountry();
+    std::vector<Node*> moveOptions();
+    void setDamage(double damage);
+    double getDamage() const;
+    void setRange(int range);
+    int getRange() const;
 private:
     double _healthPoints;
     double _damagePoints;

@@ -74,11 +74,13 @@ void ArmyUnit::printTargets() {
 
         //Print the targets
         int index = 0;
-        std::cout << "List of Targets in range" << std::endl;
+        std::cout << std::left << std::setw(25) << "Target" << std::left << std::setw(5) << "Index" << std::endl;
         auto iter4 = targets.begin();
         for(iter4; iter4 != targets.end(); iter4++){
-            if(*iter4 != NULL)
-                std::cout << (*iter4)->getUnitType() << " Unit at " << (*iter4)->currentNode->getNodeName() << " at index " << index++ << std::endl;
+            if(*iter4 != NULL) {
+                std::cout << std::left << std::setw(25) << (*iter4)->getUnitType()
+                          << std::left << std::setw(5) << index++ << std::endl;
+            }
         }
     }
 }
@@ -105,4 +107,32 @@ void ArmyUnit::removeDuplicates(std::vector<Node *> &v) {
         end = std::remove(it + 1, end, *it);
     }
     v.erase(end, v.end());
+}
+
+Node *ArmyUnit::getCurrentNode() {
+    return currentNode;
+}
+
+Country *ArmyUnit::getCountry() {
+    return _country;
+}
+
+std::vector<Node *> ArmyUnit::moveOptions() {
+    return std::vector<Node *>();
+}
+
+void ArmyUnit::setDamage(double damage) {
+    _damagePoints = damage;
+}
+
+double ArmyUnit::getDamage() const {
+    return _damagePoints;
+}
+
+void ArmyUnit::setRange(int range) {
+    _range = range;
+}
+
+int ArmyUnit::getRange() const {
+    return _range;
 }

@@ -14,11 +14,8 @@ class Node {
 public:
     /// @param nodeName is the node's name
     Node(std::string nodeName);
-    /**set the factory member
-     * @param factory
-     * @returns current Node
-     */
-    Node* setFactory(MilitaryFactory* factory);
+    Node* setFactories();
+    MilitaryFactory* getFactory(int index);
     /**set the terrain member
      * @param terrain
      * @returns current Node
@@ -66,7 +63,7 @@ private:
     std::string _nodeName;
     std::vector<Node*> neighbours;
     std::vector<ArmyUnit*> occupants;
-    MilitaryFactory* _factory;
+    std::vector<MilitaryFactory*> _factories;
     Terrain* _terrain;
 };
 
