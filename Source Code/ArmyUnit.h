@@ -43,15 +43,36 @@ public:
     ArmyUnit* getTarget(int index);
     bool isAlly(Country* country);
     /** Helper function, removes duplicates from the node vector
- * @param v is a vector containing nodes
- */
+    * @param v is a vector containing nodes
+    */
     void removeDuplicates(std::vector<Node*> &v);
+    /**
+    * @returns the #currentNode memeber variable
+    */
     Node* getCurrentNode();
+    /**
+    * @returns the #_country member variable
+    */
     Country* getCountry();
+    /**
+    * @returns an array of Nodes the object can move from
+    */
     std::vector<Node*> moveOptions();
+    /**
+    * sets the #_damage variable with the passed in variable
+    */
     void setDamage(double damage);
+    /**
+    * @returns the #_damage member variable
+    */
     double getDamage() const;
+    /**
+    * sets the #_range member variable 
+    */
     void setRange(int range);
+    /**
+    * sets the #_range member variable
+    */
     int getRange() const;
 private:
     double _healthPoints;
