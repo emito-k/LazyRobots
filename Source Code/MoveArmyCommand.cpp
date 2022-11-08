@@ -23,7 +23,8 @@ void MoveArmyCommand::executeCommand(Country* country) {
         std::cout << "Select the army you'd like to move: ";
         user_input = country->getPlayer()->getResponse(temp);
         //std::cin >> user_input;
-        system("clear");
+        if(country->getPlayer()->getPlayerType() == "Human")
+            system("clear");
 
         ArmyUnit *armyUnit = country->getArmy(user_input);
 
@@ -39,7 +40,8 @@ void MoveArmyCommand::executeCommand(Country* country) {
         //std::cin >> user_input;
         user_input = country->getPlayer()->getResponse(options);
 
-        system("clear");
+        if(country->getPlayer()->getPlayerType() == "Human")
+            system("clear");
 
         armyUnit->getCurrentNode()->removeArmy(armyUnit);
         nodes.at(user_input)->addArmy(armyUnit);

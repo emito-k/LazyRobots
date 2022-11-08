@@ -43,7 +43,7 @@ void ComputerPlayer::performTurn() {
         }
 
         chosen_options[user_input] = true;
-        system("clear");
+        //system("clear");
 
         if(!chosen_options[0]) {
             if(user_input == 6){
@@ -61,6 +61,7 @@ int ComputerPlayer::getResponse(std::vector<int> options) {
     int randomIndex = rand()%options.size();
 
     val = options.at(randomIndex);
+    std::cout << val << std::endl;
 
     return val;
 }

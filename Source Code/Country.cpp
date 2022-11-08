@@ -26,7 +26,8 @@ int Country::printArmies() {
     if(armies.empty()) {
         std::cout << countryName << " has no armies\n";
         sleep(2);
-        system("clear");
+        if(_player->getPlayerType() == "Human")
+            system("clear");
         return 0;
     }
     else {
@@ -105,10 +106,12 @@ void Country::createArmy() {
     else
         std::cout << "Invalid index!!!" << std::endl;
     if(armyUnit != nullptr) {
-        system("clear");
+        if(_player->getPlayerType() == "Human")
+            system("clear");
         std::cout << "Building " << armyUnit->getUnitType() << "..." << std::endl;
         sleep(2);
-        system("clear");
+        if(_player->getPlayerType() == "Human")
+            system("clear");
         addArmy(armyUnit);
     }
 

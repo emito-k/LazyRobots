@@ -35,7 +35,8 @@ void SupplyArmyCommand::executeCommand(Country* country) {
         if(armies.size() == 1){
             std::cout << "No armies to supply" << std::endl;
             sleep(3);
-            system("clear");
+            if(country->getPlayer()->getPlayerType() == "Human")
+                system("clear");
         }
         else {
             auto iter = armies.begin();
@@ -57,7 +58,8 @@ void SupplyArmyCommand::executeCommand(Country* country) {
                 choice = country->getPlayer()->getResponse(options);
 
                 armyUnit->supplyUnit(armies.at(choice));
-                system("clear");
+                if(country->getPlayer()->getPlayerType() == "Human")
+                    system("clear");
                 std::cout << armyUnit->getUnitType() << " has supplied " << armiesToSupply.at(choice)->getUnitType() << std::endl;
             }
             else

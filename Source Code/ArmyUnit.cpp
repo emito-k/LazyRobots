@@ -72,10 +72,12 @@ bool ArmyUnit::printTargets() {
 
         //Print the targets
         if(targets.empty()) {
-            system("clear");
+            if(_country->getPlayer()->getPlayerType() == "Human")
+                system("clear");
             std::cout << "No targets " << std::endl;
             sleep(2);
-            system("clear");
+            if(_country->getPlayer()->getPlayerType() == "Human")
+                system("clear");
             return false;
         }
         else{
