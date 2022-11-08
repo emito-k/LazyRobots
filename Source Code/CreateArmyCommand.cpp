@@ -15,6 +15,4 @@ void CreateArmyCommand::executeCommand(Country* country) {
     std::cout << "The country currently has R" << country->getMoney() << ", what would you like to build? " << std::endl;
 
     country->createArmy();
-    sleep(2);
-    system("clear");
 }

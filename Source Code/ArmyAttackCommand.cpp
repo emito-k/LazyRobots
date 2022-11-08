@@ -9,13 +9,18 @@ void ArmyAttackCommand::executeCommand(Country *country) {
         return;
     }
 
-    bool flag = country->printArmies();
+    int flag = country->printArmies();
 
-    if(flag){
+    if(flag != 0){
         std::cout << "Select the army you'd like to carry out the attack:\n";
         int index = -1;
 
-        std::cin >> index;
+        //std::cin >> index;
+        std::vector<int> temp;
+        for(int i = 0; i < flag; i++){
+            temp.push_back(i);
+        }
+        index = country->getPlayer()->getResponse(temp);
 
         ArmyUnit* armyUnit = country->getArmy(index);
 
@@ -26,7 +31,7 @@ void ArmyAttackCommand::executeCommand(Country *country) {
         flag = armyUnit->printTargets();
 
         if(flag) {
-            std::cin >> index;
+            //std::cin >> index;
 
             ArmyUnit *enemyUnit = armyUnit->getTarget(index);
 

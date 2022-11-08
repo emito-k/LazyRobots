@@ -11,6 +11,7 @@
 class PlayerCommand;
 class ArmyUnit;
 class Node;
+class Player;
 
 class Country {
 public:
@@ -18,7 +19,7 @@ public:
     // @returns nothing
     Country(std::string countryName);
     void surrender();
-    bool printArmies();
+    int printArmies();
     void executeCommand(PlayerCommand *playerCommand);
     void setCapitol(Node* node);
     std::string getCountryName();
@@ -27,6 +28,8 @@ public:
     void createArmy();
     int getMoney() const;
     bool isActive();
+    Player* getPlayer();
+    void setPlayer(Player* player);
 
 private:
     Node* capital;
@@ -34,6 +37,7 @@ private:
     std::vector<ArmyUnit*> armies;
     int money;
     std::string countryName;
+    Player* _player;
 };
 
 #endif

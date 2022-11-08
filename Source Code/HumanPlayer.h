@@ -7,6 +7,7 @@ class HumanPlayer : public Player {
 public:
     HumanPlayer(std::string playerName);
     void performTurn() override;
+    int getResponse(std::vector<int> options) override;
 };
 
 #endif

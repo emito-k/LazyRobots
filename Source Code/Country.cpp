@@ -22,12 +22,12 @@ void Country::executeCommand(PlayerCommand *playerCommand) {
     }
 }
 
-bool Country::printArmies() {
+int Country::printArmies() {
     if(armies.empty()) {
         std::cout << countryName << " has no armies\n";
         sleep(2);
         system("clear");
-        return false;
+        return 0;
     }
     else {
         std::cout << countryName << " armies indices: " << std::endl;
@@ -36,7 +36,7 @@ bool Country::printArmies() {
             ArmyUnit *unit = armies.at(index);
             std::cout << index << ". " << unit->getUnitType() << " at " << unit->getCurrentLocationName() << std::endl;
         }
-        return true;
+        return armies.size();
     }
 }
 
@@ -61,26 +61,54 @@ ArmyUnit *Country::getArmy(int index) {
 
 void Country::createArmy() {
     int index = 0;
-    std::cout << "1. TankUnit\n";
-    std::cout << "2. AttackHelicopterUnit\n";
-    std::cout << "3. InfantryUnit\n";
-    std::cout << "4. SupplyUnit\n>";
-    std::cin >> index;
+    std::cout << "1. Make Tank Unit (150)\n";
+    std::cout << "2. Make Attack Helicopter (200)\n";
+    std::cout << "3. Make Infantry Unit (100)\n";
+    std::cout << "4. Make SupplyUnit (150)\n>";
+    //std::cin >> index;
+
+    index = _player->getResponse({1,2,3,4});
 
     ArmyUnit *armyUnit = nullptr;
-    if(index == 1)
-        armyUnit = capital->getFactory(1)->createUnit(this);
-    else if(index == 2)
-        armyUnit = capital->getFactory(2)->createUnit(this);
-    else if(index == 3)
-        armyUnit = capital->getFactory(0)->createUnit(this);
-    else if(index == 4)
-        armyUnit = capital->getFactory(3)->createUnit(this);
+    if(index == 1) {
+        if(money < 150)
+            std::cout << "No enough cash" << std::endl;
+        else {
+            armyUnit = capital->getFactory(1)->createUnit(this);
+            money -= 150;
+        }
+    }
+    else if(index == 2) {
+        if(money < 200)
+            std::cout << "No enough cash" << std::endl;
+        else {
+            armyUnit = capital->getFactory(2)->createUnit(this);
+            money -= 200;
+        }
+    }
+    else if(index == 3) {
+        if(money < 100)
+            std::cout << "No enough cash" << std::endl;
+        else {
+            armyUnit = capital->getFactory(0)->createUnit(this);
+            money -= 100;
+        }
+    }
+    else if(index == 4) {
+        if(money < 150)
+            std::cout << "No enough cash" << std::endl;
+        else {
+            armyUnit = capital->getFactory(3)->createUnit(this);
+            money -= 150;
+        }
+    }
     else
         std::cout << "Invalid index!!!" << std::endl;
     if(armyUnit != nullptr) {
         system("clear");
         std::cout << "Building " << armyUnit->getUnitType() << "..." << std::endl;
+        sleep(2);
+        system("clear");
         addArmy(armyUnit);
     }
 
@@ -94,3 +122,10 @@ bool Country::isActive() {
     return flag->isActive();
 }
 
+Player *Country::getPlayer() {
+    return _player;
+}
+
+void Country::setPlayer(Player* player) {
+    _player = player;
+}

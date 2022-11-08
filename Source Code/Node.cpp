@@ -42,11 +42,26 @@ Node *Node::disconnectNode(Node *newNode) {
 void Node::addArmy(ArmyUnit *armyUnit) {
     if(armyUnit->getCurrentNode() != nullptr)
         armyUnit->getCurrentNode()->removeArmy(armyUnit);
+
     occupants.push_back(armyUnit);
+
     armyUnit->setNode(this);
+
+    double damage = armyUnit->getDamage();
+
+    _terrain->addEffects(armyUnit);
+
+    if(_terrain->getTerrainType() == "PlainTerrain") {
+        std::cout << _terrain->getTerrainType() << " doesn't affect the army" << std::endl;
+        return;
+    }
+    std::cout << armyUnit->getCountry()->getCountryName() << " " << armyUnit->getUnitType() << " has entered "
+    << getNodeName() << " and the " << _terrain->getTerrainType() << " has decreased their damage from " << damage
+    << " to " << armyUnit->getDamage() << std::endl;
 }
 
 void Node::removeArmy(ArmyUnit *armyUnit) {
+    _terrain->removeEffects(armyUnit);
     auto iter = occupants.begin();
     for(iter; iter != occupants.end(); iter++){
         if(*iter == armyUnit) {

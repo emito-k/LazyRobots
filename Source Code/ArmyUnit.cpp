@@ -79,16 +79,19 @@ bool ArmyUnit::printTargets() {
             return false;
         }
         else{
+            std::vector<int> options;
             int index = 0;
             std::cout << "Select the army you'd like to attack: " << std::endl;
             std::cout << "Target indices" << std::endl;
             auto iter4 = targets.begin();
             for(iter4; iter4 != targets.end(); iter4++){
                 if(*iter4 != NULL && *iter4 != this) {
+                    options.push_back(index);
                     std::cout << index++ << ". " << (*iter4)->getUnitType() << std::endl;
                 }
             }
             std::cout << ">";
+            _country->getPlayer()->getResponse(options);
         }
     }
     return true;
